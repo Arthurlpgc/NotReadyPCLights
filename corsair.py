@@ -22,6 +22,14 @@ def get_available_leds():
     return leds
 
 
+def get_devices():
+    leds = list()
+    devices = corsair_sdk.get_devices()
+    for device_index in range(len(devices)):
+        device = devices[device_index]
+        print(f'{{{device.type}}}({device.led_count})({device.model})({device.id})')
+    return leds
+
 def set_color_corsair(r, g, b):
     cnt = len(corsair_all_leds)
     for di in range(cnt):

@@ -1,3 +1,5 @@
 requests
 cuesdk
 flask
+libusb
+pyusb

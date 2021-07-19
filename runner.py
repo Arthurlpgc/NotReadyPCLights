@@ -1,7 +1,10 @@
 from corsair import init, set_color_corsair
+from nzxt import set_color_nzxt
 from razer import init_razer, set_color_razer, heartbeat_thread
 import threading, time
 from flask import Flask, request
+from debounce import debounce
+
 
 def from_hsv(hsv):
     [h, s, v] = hsv
@@ -27,10 +30,15 @@ init()
 init_razer()
 current_hsv = [270, 1, 1]
 
+@debounce(2)
 def set_colors_hsv():
     current_colors = from_hsv(current_hsv)
     set_color_corsair(current_colors[0], current_colors[1], current_colors[2])
     set_color_razer(current_colors[0], current_colors[1], current_colors[2])
+    set_color_nzxt(current_colors[0], current_colors[1], current_colors[2])
+    set_color_corsair(current_colors[0], current_colors[1], current_colors[2])
+    set_color_razer(current_colors[0], current_colors[1], current_colors[2])
+    set_color_nzxt(current_colors[0], current_colors[1], current_colors[2])
 
 set_colors_hsv()
 
@@ -93,7 +101,7 @@ def hb_brightness_status_route():
 
 @app.route('/hb/hue/set/<hue>', methods=['GET'])
 def hb_hue_set_route(hue):
-    current_hsv[0] = hue
+    current_hsv[0] = float(hue)
     set_colors_hsv()
     return "ok"
 

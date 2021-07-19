@@ -1,0 +1,31 @@
+{
+    "razer": {
+        "devices": [
+            {
+                "name": "Huntsman",
+                "id": "keyboard"
+            },
+            {
+                "name": "Basilisk",
+                "id": "mouse"
+            },
+            {
+                "name": "mousepad",
+                "id": "mousepad"
+            },
+            {
+                "name": "mobo",
+                "id": "connect"
+            }
+        ]
+    },
+    "nzxt": {
+        "devices": [
+            {
+                "name": "Led strip",
+                "id": "hue_plus",
+                "leds": 16
+            }
+        ]
+    }
+}
